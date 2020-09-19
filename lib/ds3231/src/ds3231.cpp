@@ -109,3 +109,19 @@ void DS3231::displayTime()
             break;
     }
 }
+
+/* ======================================================= Private Methods ============================================== */
+/**
+ * @brief Converts binary coded decimal to normal decimal numbers
+*/
+int DS3231:: bcdToDec(int val)
+{
+    return ((val / 16 * 10) + (val % 16));
+}
+/**
+ * @brief Converts normal decimal numbersto binary coded decimal
+*/
+byte DS3231::decToBcd(int val)
+{
+    return ((val / 10 * 16) + (val % 10));
+}
