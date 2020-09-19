@@ -18,6 +18,9 @@ void setup() {
       rtc.setDS3231Time(28, 05, 12, 7, 19, 9, 20);
     #endif // SET_RTC_TIME_ENABLED
   #endif // RTC_ENABLED
+  #if EC5_ENABLED
+    ec5Init(EC5_INPUT, EC5_PWR_PIN);
+  #endif // EC5_ENABLED
 }
 
 void loop() {
