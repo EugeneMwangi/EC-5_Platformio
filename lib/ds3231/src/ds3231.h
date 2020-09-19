@@ -14,6 +14,8 @@
 #include <Arduino.h>
 #include "Wire.h"
 
+#define DS3231_I2C_ADDRESS    0x68      //Address of the ds3231 timer
+
 class DS3231
 {
     public:
