@@ -53,6 +53,18 @@ void DS3231::readDS3231Time(int *sec, int *min, int *hr, int *dayOfWeek, int *da
     _i2c->requestFrom(DS3231_I2C_ADDRESS, 7); //request 7 bytes of data from DS3231 starting from register 00h
     *sec = bcdToDec(_i2c->read() & 0x7f);
     *min = bcdToDec(_i2c->read());
+    *hr  = bcdToDec(_i2c->read() & 0x3f);
+    *dayOfWeek = bcdToDec(_i2c->read());
+    *day  = bcdToDec(_i2c->read());
+    *month = bcdToDec(_i2c->read());
+    *year  = bcdToDec(_i2c->read());
+}
+/**
+ * @brief Displays time and date
+*/
+void DS3231::displayTime()
+{
+    int sec, min, hr, dayOfWeek, day, month, year;
+    readDS3231Time(&sec, &min, &hr, &dayOfWeek, &day, &month,&year);
     
-
 }
