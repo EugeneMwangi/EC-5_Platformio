@@ -66,5 +66,46 @@ void DS3231::displayTime()
 {
     int sec, min, hr, dayOfWeek, day, month, year;
     readDS3231Time(&sec, &min, &hr, &dayOfWeek, &day, &month,&year);
-    
+    // send it to the serial monitor
+    Serial.print(hr);
+    Serial.print(":");
+    if(min<10)Serial.print("0");
+    Serial.print(min);
+    Serial.print(":");
+    if(sec<10)Serial.print("0");
+    Serial.print(sec);
+    Serial.print(" ");
+    Serial.print(day);
+    Serial.print("/");
+    Serial.print(month);
+    Serial.print("/");
+    Serial.print(year);
+    Serial.print(" Day of the Week: ");
+    switch(dayOfWeek)
+    {
+        case 1:
+            Serial.print("Sunday");
+            break;
+        case 2:
+            Serial.print("Monday");
+            break;
+        case 3:
+            Serial.print("Tueday");
+            break;
+        case 4:
+            Serial.print("Wednesday");
+            break;
+        case 5: 
+            Serial.print("Thursday");
+            break;
+        case 6:
+            Serial.print("Friday");
+            break;
+        case 7:
+            Serial.print("Saturday");
+            break;
+        default:
+            Serial.print(dayOfWeek);
+            break;
+    }
 }
