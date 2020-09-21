@@ -35,10 +35,10 @@ void loop() {
   // put your main code here, to run repeatedly:
   #if THINGSPEAK_ENABLED
     #if THINGSPEAK_TEST
-      sendToThingspeak();
+      sendToThingspeak(*sht);
       delay(30000);
     #endif //THINGSPEAK_TEST
-    sendUpdate(* rtc);
+    sendUpdate(* rtc, *sht);
   #endif // THINGSPEAK_ENABLED
 
 }
