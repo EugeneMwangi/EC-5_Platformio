@@ -13,6 +13,8 @@ const char* ssid = "ssid";           // Give your wifi network name
 const char* pass  = "password";   // Give your wifi network password
 const char* server = "api.thingspeak.com";  
 
+WiFiClient client;
+
 void thingspeakInit()
 {
     Serial.print("hello");
