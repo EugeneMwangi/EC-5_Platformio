@@ -24,10 +24,10 @@ void ec5Init(ec5Pins input, ec5Pins pwr)
 }
 
 /**
- * @brief  Function reads raw voltage reading.
- * @retval average value of 10 raw voltage readings from ec5 sensor.
+ * @brief  Function reads raw reading.
+ * @retval average value of 10 raw readings from ec5 sensor.
  */
-float ec5VoltageReading()
+float ec5RawReading()
 {
     if(pwrPin != 0)digitalWrite(pwrPin, HIGH);
     int array[10], sum=0;
@@ -55,7 +55,7 @@ float ec5VoltageReading()
    */
   float ec5VWCReading()
   {
-    float avg = ec5VoltageReading();  
+    float avg = ec5RawReading();  
     /*      
      * Using a 10 bit ADC, the formula used is:
      *      VWC = (0.0041 * avg) - 0.4895
