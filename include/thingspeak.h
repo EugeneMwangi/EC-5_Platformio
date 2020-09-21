@@ -11,8 +11,8 @@
 #include <Arduino.h>
 #include "ESP8266WiFi.h"
 
-extern void thingspeakInit();
-extern void sendToThingspeak();
-extern void sendUpdate(DS3231 &rtc);
+void thingspeakInit();
+void sendToThingspeak();
+void sendUpdate(DS3231 &rtc);
 
 #endif // THINGSPEAK_H_
