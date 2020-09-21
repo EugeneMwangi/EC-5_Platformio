@@ -42,11 +42,15 @@ void thingspeakInit()
 /**
  * @brief Sends values to ThingSpeak
 */
-void sendToThingspeak()
+void sendToThingspeak(Sht1x &sht)
 {
     #if EC5_ENABLED
     float vwcTSVal = ec5VWCReading();
     float rawAvg = ec5RawReading(); //Change this to ec5RawReading
+    
+    #if SHT1x_ENABLED
+    float sht1xTempC = sht.readTemperatureC();
+    #endif //SHT1x_ENABLED
 
     if (client.connect(server,80))   //   "184.106.153.149" or api.thingspeak.com
     {  
@@ -55,6 +59,10 @@ void sendToThingspeak()
         postStr += String(vwcTSVal);
         postStr +="&field2=";
         postStr += String(rawAvg);
+        #if SHT1x_ENABLED
+        postStr +="&field3=";
+        postStr +=String(sht1xTempC);
+        #endif //SHT1x_ENABLED
         postStr += "\r\n\r\n";
 
         client.print("POST /update HTTP/1.1\n");
@@ -77,7 +85,7 @@ void sendToThingspeak()
 /**
  * @brief Sends regular updates to thingspeak by calling sendToThingspeak()
 */
-void sendUpdate(DS3231 &rtc)
+void sendUpdate(DS3231 &rtc, Sht1x &sht10)
 {
     #if RTC_ENABLED
     static int count = 0;
@@ -88,7 +96,7 @@ void sendUpdate(DS3231 &rtc)
     int rem = minute % 5;
     if (rem == 0 && count == 0) 
     {
-        sendToThingspeak();
+        sendToThingspeak(sht10);
         count++;
     }
     else if (rem > 0)
