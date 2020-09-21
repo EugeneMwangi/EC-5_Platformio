@@ -12,7 +12,7 @@
 #include "ESP8266WiFi.h"
 
 extern void thingspeakInit();
-void sendToThingspeak();
-void sendUpdate();
+extern void sendToThingspeak();
+extern void sendUpdate();
 
 #endif // THINGSPEAK_H_
