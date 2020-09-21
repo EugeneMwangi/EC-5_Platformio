@@ -10,6 +10,7 @@
 #include "ec5.h"
 #include "ds3231.h"
 #include "config.h"
+#include "sht1x.h"
 
 String apiKey = "apiKey";       // Enter your Write API key from ThingSpeak
 

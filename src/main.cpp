@@ -3,11 +3,14 @@
 #include "ec5.h"
 #include "config.h"
 #include "thingspeak.h"
+#include "sht1x.h"
 
 #if RTC_ENABLED
   DS3231* rtc = new DS3231(&Wire);
 #endif // RTC_ENABLED
-
+#if SHT1x_ENABLED
+  Sht1x* sht = new Sht1x(SHT1x_DATA, SHT1x_CLCK);
+#endif //SHT1x_ENABLED
 
 void setup() {
   // put your setup code here, to run once:

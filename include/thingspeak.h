@@ -12,9 +12,10 @@
 #include "ESP8266WiFi.h"
 
 class DS3231;
+class Sht1x;
 
 void thingspeakInit();
-void sendToThingspeak();
-void sendUpdate(DS3231 &rtc);
+void sendToThingspeak(Sht1x &sht);
+void sendUpdate(DS3231 &rtc, Sht1x &sht);
 
 #endif // THINGSPEAK_H_
