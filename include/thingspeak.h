@@ -9,14 +9,9 @@
 #define THINGSPEAK_H_
 
 #include <Arduino.h>
+#include "ESP8266WiFi.h"
 
-String apiKey = "apiKey";       // Enter your Write API key from ThingSpeak
-
-const char* ssid = "ssid";           // Give your wifi network name
-const char* pass  = "password";   // Give your wifi network password
-const char* server = "api.thingspeak.com";  
-
-void thingspeakInit();
+extern void thingspeakInit();
 void sendToThingspeak();
 void sendUpdate();
 
