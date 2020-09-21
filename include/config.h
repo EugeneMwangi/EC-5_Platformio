@@ -18,7 +18,11 @@
 #define EC5_INPUT        A0   
 
 //Define the SDA & SCL Pins and the CLOCK Speed of the DS3231 
-#define SDA_PIN          4
-#define SCL_PIN          0
+#define SDA_PIN          4  //D4
+#define SCL_PIN          0  //D0
 #define CLK_SPEED        400000L // sets I2C clock to 400kHz
+
+//Define the SHT1x Data and Clock pins
+#define SHT1x_DATA       14 // D5
+#define SHT1x_CLCK       12 // D6
 #endif // CONFIG_H_
