@@ -2,6 +2,7 @@
 #include "ds3231.h"
 #include "ec5.h"
 #include "config.h"
+#include "thingspeak.h"
 
 #if RTC_ENABLED
   DS3231* rtc = new DS3231(&Wire);
@@ -21,9 +22,19 @@ void setup() {
   #if EC5_ENABLED
     ec5Init(EC5_INPUT, EC5_PWR_PIN);
   #endif // EC5_ENABLED
+  #if THINGSPEAK_ENABLED
+    thingspeakInit();
+  #endif // THINGSPEAK_ENABLED
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+  #if THINGSPEAK_ENABLED
+    #if THINGSPEAK_TEST
+      sendToThingspeak();
+      delay(30000);
+    #endif //THINGSPEAK_TEST
+    sendUpdate(* rtc);
+  #endif // THINGSPEAK_ENABLED
 
 }
