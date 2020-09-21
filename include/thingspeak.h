@@ -13,6 +13,6 @@
 
 extern void thingspeakInit();
 extern void sendToThingspeak();
-extern void sendUpdate();
+extern void sendUpdate(DS3231 &rtc);
 
 #endif // THINGSPEAK_H_

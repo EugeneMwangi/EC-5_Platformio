@@ -8,6 +8,8 @@
 
 #include "thingspeak.h"
 #include "ec5.h"
+#include "ds3231.h"
+#include "config.h"
 
 String apiKey = "apiKey";       // Enter your Write API key from ThingSpeak
 
@@ -41,8 +43,9 @@ void thingspeakInit()
 */
 void sendToThingspeak()
 {
+    #if EC5_ENABLED
     float vwcTSVal = ec5VWCReading();
-    float rawAvg = ec5VoltageReading(); //Change this to ec5RawReading
+    float rawAvg = ec5RawReading(); //Change this to ec5RawReading
 
     if (client.connect(server,80))   //   "184.106.153.149" or api.thingspeak.com
     {  
@@ -62,10 +65,34 @@ void sendToThingspeak()
         client.print(postStr.length());
         client.print("\n\n");
         client.print(postStr);
-        }
-        client.stop();
+    }
+    client.stop();
 
-        Serial.println("Waiting...");     
-        // thingspeak needs minimum 15 sec delay between updates
-        delay(1000);      
+    Serial.println("Waiting...");     
+    // thingspeak needs minimum 15 sec delay between updates
+    delay(1000);    
+    #endif // EC5_ENABLED  
+}
+/**
+ * @brief Sends regular updates to thingspeak by calling sendToThingspeak()
+*/
+void sendUpdate(DS3231 &rtc)
+{
+    #if RTC_ENABLED
+    static int count = 0;
+    // Get data from the DS3231
+    int second, minute, hour, dayOfWeek, day, month, year;
+    // retrieve data from DS3231
+    rtc.readDS3231Time(&second, &minute, &hour, &dayOfWeek, &day, &month, &year);
+    int rem = minute % 5;
+    if (rem == 0 && count == 0) 
+    {
+        sendToThingspeak();
+        count++;
+    }
+    else if (rem > 0)
+    {
+        count = 0;
+    }
+    #endif //RTC_ENABLED    
 }
