@@ -84,28 +84,28 @@ void DS3231::displayTime()
     switch(dayOfWeek)
     {
         case 1:
-            Serial.print("Sunday");
+            Serial.println("Sunday");
             break;
         case 2:
-            Serial.print("Monday");
+            Serial.println("Monday");
             break;
         case 3:
-            Serial.print("Tueday");
+            Serial.println("Tueday");
             break;
         case 4:
-            Serial.print("Wednesday");
+            Serial.println("Wednesday");
             break;
         case 5: 
-            Serial.print("Thursday");
+            Serial.println("Thursday");
             break;
         case 6:
-            Serial.print("Friday");
+            Serial.println("Friday");
             break;
         case 7:
-            Serial.print("Saturday");
+            Serial.println("Saturday");
             break;
         default:
-            Serial.print(dayOfWeek);
+            Serial.println(dayOfWeek);
             break;
     }
 }
