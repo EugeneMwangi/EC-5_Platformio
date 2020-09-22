@@ -20,7 +20,7 @@ void setup() {
     Wire.setClock(CLK_SPEED);
     #if SET_RTC_TIME_ENABLED
     //sec, min, hr, dayOfWeek(1=Sunday, 7=Saturday), dayOfMonth(1-31), month year(0-99)
-      rtc->setDS3231Time(28, 05, 12, 7, 19, 9, 20);
+      rtc->setDS3231Time(43, 43, 9, 3, 22, 9, 20);
     #endif // SET_RTC_TIME_ENABLED
   #endif // RTC_ENABLED
   #if EC5_ENABLED
@@ -40,5 +40,5 @@ void loop() {
     #endif //THINGSPEAK_TEST
     sendUpdate(* rtc, *sht);
   #endif // THINGSPEAK_ENABLED
-
+  delay(2500);
 }

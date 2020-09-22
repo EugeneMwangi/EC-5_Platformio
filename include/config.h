@@ -8,9 +8,9 @@
 
 #define RTC_ENABLED             1
 #define EC5_ENABLED             1
-#define SET_RTC_TIME_ENABLED    1
+#define SET_RTC_TIME_ENABLED    0
 #define THINGSPEAK_ENABLED      1
-#define THINGSPEAK_TEST         1
+#define THINGSPEAK_TEST         0
 #define SHT1x_ENABLED           1
 
 //Define the input pins of the EC-5 Soil Moisture Sensor
