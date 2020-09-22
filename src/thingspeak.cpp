@@ -14,8 +14,8 @@
 
 String apiKey = "apiKey";       // Enter your Write API key from ThingSpeak
 
-const char* ssid = "ssid";           // Give your wifi network name
-const char* pass  = "password";   // Give your wifi network password
+const char* ssid = "ILLUMINUM_SAF";           // Give your wifi network name
+const char* pass  = "GreenhousePlus+2020";   // Give your wifi network password
 const char* server = "api.thingspeak.com";  
 
 WiFiClient client;
@@ -47,9 +47,12 @@ void sendToThingspeak(Sht1x &sht)
     #if EC5_ENABLED
     float vwcTSVal = ec5VWCReading();
     float rawAvg = ec5RawReading(); //Change this to ec5RawReading
+
+    Serial.print("Volumetric Water Content: "); Serial.println(vwcTSVal);
     
     #if SHT1x_ENABLED
     float sht1xTempC = sht.readTemperatureC();
+    Serial.print("SHT10 Temperature: "); Serial.println(sht1xTempC);
     #endif //SHT1x_ENABLED
 
     if (client.connect(server,80))   //   "184.106.153.149" or api.thingspeak.com
@@ -93,6 +96,7 @@ void sendUpdate(DS3231 &rtc, Sht1x &sht10)
     int second, minute, hour, dayOfWeek, day, month, year;
     // retrieve data from DS3231
     rtc.readDS3231Time(&second, &minute, &hour, &dayOfWeek, &day, &month, &year);
+    rtc.displayTime();
     int rem = minute % 5;
     if (rem == 0 && count == 0) 
     {
