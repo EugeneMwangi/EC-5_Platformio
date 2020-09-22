@@ -12,7 +12,7 @@
 #include "config.h"
 #include "sht1x.h"
 
-String apiKey = "apiKey";       // Enter your Write API key from ThingSpeak
+String apiKey = "630YC5WSN5IR3AGI";       // Enter your Write API key from ThingSpeak
 
 const char* ssid = "ILLUMINUM_SAF";           // Give your wifi network name
 const char* pass  = "GreenhousePlus+2020";   // Give your wifi network password
